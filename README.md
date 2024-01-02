@@ -1,3 +1,9 @@
+CogVLM的傻瓜包
+
+clone下来后运行国内安装，等下载
+完成之后看自己的显卡运行对应启动
+启动后提示输入图片目录，复制图片路径后回车运行
+
 # CogVLM & CogAgent
 
 📗 [中文版README](./README_zh.md)
