@@ -4,6 +4,7 @@ import os
 import torch
 from PIL import Image
 from transformers import AutoModelForCausalLM, LlamaTokenizer
+from transformers.utils.import_utils import is_torch_bf16_gpu_available
 import argparse
 from tqdm import tqdm
 
@@ -12,8 +13,6 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--from_pretrained", type=str, default="./cogagent-vqa-hf", help='pretrained ckpt')
 parser.add_argument("--local_tokenizer", type=str, default="lmsys/vicuna-7b-v1.5", help='tokenizer path')
 parser.add_argument("--image_folder", type=str, default="./test", help='Image folder path')
-parser.add_argument("--bf16", action="store_true")
-
 query = "Describe this image in a very detailed manner."
 
 args = parser.parse_args()
@@ -31,7 +30,7 @@ DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 tokenizer = LlamaTokenizer.from_pretrained(TOKENIZER_PATH)
 
-if args.bf16:
+if is_torch_bf16_gpu_available():
     torch_type = torch.bfloat16
     model = AutoModelForCausalLM.from_pretrained(
        MODEL_PATH,
