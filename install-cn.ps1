@@ -43,7 +43,6 @@ pip install deepspeed-0.11.2+8ce7471-py3-none-any.whl
 
 Write-Output "安装依赖..."
 pip install huggingface_hub
-pip install scipy networkx wordcloud matplotlib Pillow tqdm gradio requests
 pip install -r require.txt
 Check "依赖安装失败。"
 
